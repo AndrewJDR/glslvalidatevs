@@ -1,44 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <PropertyPageSchema Include="GLSLValidateTargets.props" />
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)/GLSLValidateTargets.props" />
     <AvailableItemName Include="GLSLValidate">
       <Targets>GLSLValidate</Targets>
     </AvailableItemName>
   </ItemGroup>
   <ImportGroup Label="PropertySheets" />
-  <PropertyGroup Label="UserMacros">
-    <GLSLVALIDATOREXE>$(ProjectDir)\deps\qt5\build\x64\qtbase</GLSLVALIDATOREXE>
-  </PropertyGroup>
   <PropertyGroup />
   <ItemDefinitionGroup />
   <ItemGroup>
-    <BuildMacro Include="QTDIR">
+    <BuildMacro Include="GLSLVALIDATOREXE">
       <Value>$(GLSLVALIDATOREXE)</Value>
-      <EnvironmentVariable>true</EnvironmentVariable>
     </BuildMacro>
   </ItemGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <MocFlags></MocFlags>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <MocFlags></MocFlags>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <MocFlags></MocFlags>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <MocFlags></MocFlags>
-  </PropertyGroup>
-
-  <Target Name="GLSLValidate"
-          Inputs="@(GLSLValidate)"  
-          BeforeTargets="ClCompile">
+  <Target Name="GLSLValidate" Inputs="@(GLSLValidate)" BeforeTargets="ClCompile" Outputs="@(GLSLValidate->'$(IntermediateOutputPath)\%(Filename)%(Extension).timestamp')">
     <Message Text="$(GLSLVALIDATOREXE) &quot;%(GLSLValidate.FullPath)&quot;" Importance="high" />
-    <Exec Command="$(GLSLVALIDATOREXE)" />
+    <Exec Command="$(GLSLVALIDATOREXE) &quot;%(GLSLValidate.FullPath)&quot; &amp;&amp; echo 1 > &quot;$(IntermediateOutputPath)\%(Filename)%(Extension).timestamp&quot;" />
   </Target>
 </Project>
