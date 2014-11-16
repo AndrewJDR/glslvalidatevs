@@ -1,6 +1,8 @@
 # GLSLValidateVS
 
-This property page for Visual Studio allows GLSL shader files to be sent to glslValidator upon build time. Any errors will be printed to the Build Output window in Visual Studio, and the build will fail.
+This property page for Visual Studio allows GLSL shader files to be sent to glslValidator upon build time. If shader syntax errors are found, they'll be printed to the Build Output window and the build will fail.
+
+Another benefit of using this is that your project will be built if a shader file gets updated. Typically, shader files don't participate in the build at all, and thus updating them will not cause your project to build when you hit F7 or the like. This can be important if you have post-build steps that need to run when any of your project files are updated (e.g. a post build step that copies your shader files into a deployment directory).
 
 ## Prerequisites
 [Download the glslangValidator executable] and find a home for it on your drive. Visit the [GLSL Reference compiler page at khronos] for more information on that project.
@@ -14,7 +16,7 @@ This property page for Visual Studio allows GLSL shader files to be sent to glsl
 * In the properties dialog that opens, navigate to the "User Macros" category
 * Set GLSLVALIDATOREXE to the path to your glslangValidator executable (You can alternatively set a system-wide GLSLVALIDATOREXE environment variable)
 * You may need to restart Visual Studio and reopen your project
-* Viola! From this point forward, files you add to your project (with the following file extensions) will sent to  glslangValidator upon build time. Any errors will be printed to the Build Output window in Visual Studio. Note, only files with the following extensions are supported by glslangValidator:
+* Voila! From this point forward, files you add to your project (with the following file extensions) will sent to  glslangValidator upon build time. Any errors will be printed to the Build Output window in Visual Studio. Note, only files with the following extensions are supported by glslangValidator:
   * .frag
   * .vert
   * .geom
