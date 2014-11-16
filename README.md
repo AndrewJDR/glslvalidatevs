@@ -13,7 +13,7 @@ This property page for Visual Studio allows GLSL shader files to be sent to glsl
 * Select the GLSLValidateVS.props file
 * If you expand any of the configurations under your project (e.g. Debug|x64, Release|x64, etc), you should now notice a GLSLValidateVS item. Right click on it and go to properties.
 * In the properties dialog that opens, navigate to the "User Macros" category
-* Set GLSLVALIDATOREXE to the path to your glslangValidator executable
+* Set GLSLVALIDATOREXE to the path to your glslangValidator executable (You can alternatively set a system-wide GLSLVALIDATOREXE environment variable)
 * You may need to restart Visual Studio and reopen your project
 * Viola! From this point forward, any shader files you add to your project will checked upon build time. The following extensions are supported:
 ** .frag
