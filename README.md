@@ -1,7 +1,6 @@
 # GLSLValidateVS
 
-This property page for Visual Studio allows GLSL shader files to be sent to glslValidator upon build time.
-
+This property page for Visual Studio allows GLSL shader files to be sent to glslValidator upon build time. Any errors will be printed to the Build Output window in Visual Studio, and the build will fail.
 
 ## Prerequisites
 [Download the glslangValidator executable] and find a home for it on your drive. Visit the [GLSL Reference compiler page at khronos] for more information on that project.
@@ -15,14 +14,14 @@ This property page for Visual Studio allows GLSL shader files to be sent to glsl
 * In the properties dialog that opens, navigate to the "User Macros" category
 * Set GLSLVALIDATOREXE to the path to your glslangValidator executable (You can alternatively set a system-wide GLSLVALIDATOREXE environment variable)
 * You may need to restart Visual Studio and reopen your project
-* Viola! From this point forward, any shader files you add to your project will checked upon build time. The following extensions are supported:
-** .frag
-** .vert
-** .geom
-** .comp
-** .tese
-** .tesc
-* If you don't like this and would prefer to set your shader files up manually (see below), check out GLSLValidateTargets.props for instructions on how to disable this behavior.
+* Viola! From this point forward, files you add to your project (with the following file extensions) will sent to  glslangValidator upon build time. Any errors will be printed to the Build Output window in Visual Studio. Note, only files with the following extensions are supported by glslangValidator:
+  * .frag
+  * .vert
+  * .geom
+  * .comp
+  * .tese
+  * .tesc
+* If you would prefer to manually define which files in your project get checked, see the instructions below and also check out GLSLValidateTargets.props on how to disable the automatic file extension based item type setting.
 
 ## Manually setting shader files to be checked
 If you have existing shader files in your project, they won't automatically be set up to be validated at build time. You'll have to set their item type yourself. To do this:
@@ -30,6 +29,7 @@ If you have existing shader files in your project, they won't automatically be s
 * Right click on them and go to properties
 * In the dialog that opens, Select the General category
 * Select GLSL Validator from the Item Type dropdown.
+* The file(s) will now be checked by glslangValidator upon build time. Note, glslangValidator appears to use the file extension (supported extensions listed above) to determine how to parse the file, so you'll probably need appropriate file extensions on your shader files for this to work.
 
-[GLSL Reference compiler page at khronos] https://www.khronos.org/opengles/sdk/tools/Reference-Compiler/
-[Download the glslangValidator executable] https://cvs.khronos.org/svn/repos/ogl/trunk/ecosystem/public/sdk/tools/glslang/Install/
+[GLSL Reference compiler page at khronos]: https://www.khronos.org/opengles/sdk/tools/Reference-Compiler/
+[Download the glslangValidator executable]: https://cvs.khronos.org/svn/repos/ogl/trunk/ecosystem/public/sdk/tools/glslang/Install/
