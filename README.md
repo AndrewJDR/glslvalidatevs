@@ -8,7 +8,7 @@ Another benefit of using this is that your project will be built if a shader fil
 [Download the glslangValidator executable] and find a home for it on your drive. Visit the [GLSL Reference compiler page at khronos] for more information on that project.
 
 ## Usage
-* Put the two .props files somewhere on your drive
+* Put the two .props files somewhere on your drive (Perhaps in your project directory?)
 * With your project open Visual Studio, go to the property manager (View > Property Manager)
 * Right click on your project in the Property Manager and choose "Add existing Property Sheet"
 * Select the GLSLValidateVS.props file
